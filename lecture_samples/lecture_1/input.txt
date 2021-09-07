@@ -1,0 +1,6 @@
+https://realpython.com/linked-lists-python/
+
+lab1: https://informatics.msk.ru/mod/statements/view.php?id=53942#1
+github Baisakov: https://github.com/Beisenbek/FallADS2021
+access code: ADS2021FALL
+resousers: https://www.cs.bham.ac.uk/~jxb/DSA/dsa.2017.pdf

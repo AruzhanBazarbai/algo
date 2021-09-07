@@ -1,0 +1,2 @@
+g++ file_name.cpp
+.\a.exe
