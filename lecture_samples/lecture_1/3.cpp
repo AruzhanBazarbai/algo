@@ -1,44 +1,36 @@
+//Node{int data,Node *next}  
 #include <iostream>
 using namespace std;
 
-struct st{
-    private:
-        int *a;
-        int topindex;
+class Node{ 
+    //Node *n1=new Node(5);
+    //n1.data=5;
+    //n1.next=NULL;
     public:
-    st(int n){
-        a=new int[n];
-        topindex=-1;
-    }
-    int top(){
-        if(topindex==-1) return -1;
-        return a[topindex];
-    }
-    void push(int x){
-        topindex++;
-        a[topindex]=x;
-    }
+    int data;
+    Node *next;
 
-    void pop(){
-        if(topindex!=-1){
-            topindex--;
-        }
+    Node(int data){
+        this->data = data; //this это ссылка на экземпляр
+        this->next=NULL;
     }
 };
 
 int main(){
-   
-    int d[]={5,4,5,6,7,8,1};
-    int n=sizeof(d)/sizeof(int);
-    st s(n);
+    Node *n1=new Node(10);
+    Node *n2=new Node(25);
+    Node *n3=new Node(35);
 
-    for(int i=0;i<n;i++){
-        s.push(d[i]);
-    }
+    n1->next=n2;
+    n2->next=n3;
 
-    for(int i=0;i<n;i++){
-        cout << s.top() << endl;
-        s.pop();
-    }
+    cout << "n1= " << n1 << endl;
+    cout << "n2= " << n2 << endl;
+    cout << "n3= " << n3 << endl;
+    cout << "n1->next= " << n1->next << endl;
+    cout << "n2->next= " << n2->next << endl;
+    cout << "n3->next= " << n3->next << endl;
+    cout << n1->next->next->data << endl;
+
     return 0;
 }

@@ -1,78 +1,82 @@
-//нужно разбирать
 #include <iostream>
-
 using namespace std;
 
+// b Node(20) b->a then b->top при удаление верхнего элемента, просто перекинем топ на пред.элемент
+// a Node(10)
 
-struct node{
-    int val;
-    node * next;
-    node * prev;
-    node(int x){
-        val = x;
-        next = NULL;
-        prev = NULL;
+class Node{
+    public:
+    int data;
+    Node *next;
+
+    Node(int data){
+        this->data=data;
+        this->next=NULL;
+
     }
 };
 
-struct st{
-    private:
-        node * tail;
-    
+class Stack{
     public:
-    st(){
-        tail = NULL;
+    Node *top;
+    int sz;
+
+    Stack(){
+        top=NULL;
+        sz=0;
+
     }
 
-    int top(){
-        if(tail != NULL){
-            return tail->val;
-        }
-        return -1;
-    }
-
-    void push(int x){
-       node * item = new node(x);
-       if(tail == NULL){
-           tail = item;
-       }else{
-            tail->next = item;
-            item->prev = tail;
-            tail = item;
-       }
+    void push(int data){
+        //node(30) top
+        //node(20)
+        //node(10)
+        Node *node=new Node(data);
+        node->next=top;
+        top=node;
+        sz++;
     }
 
     void pop(){
-        if(tail != NULL){
-            tail = tail->prev;
-            if(tail != NULL){
-                tail->next = NULL;
-            }
+        if(top!=NULL){
+            top=top->next;
+            sz--;
         }
     }
 
-    bool empty(){
-        return tail == NULL;
+    int size(){
+        return this->sz;
     }
 
+    bool empty(){
+        // if(sz==0) return true;
+        // return false;
+        return(sz==0);
+    }
 };
 
 
+
 int main(){
+    //если без пойнтера делаем, то с точкой обращаемся
+    // Stack st;
+    // st.push(10);
+    // st.push(20);
+    // st.push(30);
+    // cout << st.size() << endl;
+    // здесь st сам экземпляр будет, а если через звездочку то храним именно адрес
 
-    int d[] = {1, 10, 2, 3, 5, 4};
-    int n = sizeof(d) / sizeof(int);
 
-    st  * s = new st;
+    Stack *st=new Stack();
+    st->push(10);
+    st->push(20);
+    st->push(30);
+    st->pop();
+    st->pop();
+    cout << st->size() << endl;
+    cout << st->top->data << endl;
 
-    for(int i = 0; i < n; ++i){
-        s->push(d[i]);
-    }
 
-    while(!s->empty()){
-        cout << s->top() << endl;
-        s->pop();
-    }
 
     return 0;
 }
