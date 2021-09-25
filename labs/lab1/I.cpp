@@ -4,7 +4,7 @@
 #include <stack>
 #include <deque>
 using namespace std;
-
+// done
 int main(){
     
     int n,k,x;
@@ -81,7 +81,7 @@ int main(){
                 }
 
             }
-            while(a[3].top()==2){
+            while(!a[3].empty() && a[3].top()==2){
                 q.push_back(make_pair(3,2));
                 a[2].push(a[3].top());
                 a[3].pop();
