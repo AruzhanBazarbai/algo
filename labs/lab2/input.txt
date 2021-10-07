@@ -1,3 +1,10 @@
-aaaaa
-bbbbb
-ccccc
+basic https://informatics.msk.ru/mod/statements/view.php?id=54188#1
+additional-
+1. https://leetcode.com/problems/merge-two-sorted-lists/
+2. https://leetcode.com/problems/remove-duplicates-from-sorted-list/
+3. https://leetcode.com/problems/linked-list-cycle/
+4. https://leetcode.com/problems/intersection-of-two-linked-lists/
+5. https://leetcode.com/problems/remove-linked-list-elements/
+6. https://leetcode.com/problems/reverse-linked-list/
+7. https://leetcode.com/problems/palindrome-linked-list/
+8. https://leetcode.com/problems/delete-node-in-a-linked-list/
