@@ -1,0 +1,2 @@
+git - https://github.com/Yertugan/Bachelor2021ADS
+tasks- https://leetcode.com/problemset/all/

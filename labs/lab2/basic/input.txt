@@ -1,0 +1,14 @@
++1 I am a pupil.
++2 He is a pupil.
++2 She is a pupil.
++2 They are pupils.
++3 This is a pupil.
++4 I want to sleep.
+*2 Bob went home.
+*5 I want to play.
+-3
+-5
+-1
+*2 I want
+-1
+-1
