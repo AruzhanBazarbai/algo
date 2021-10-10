@@ -4,7 +4,7 @@ using namespace std;
 class Node{
 public:
     string data;
-    int cnt;
+    int sz;
     Node * prev;
     Node * next;
 
@@ -12,7 +12,7 @@ public:
         this->data=data;
         this->prev=NULL;
         this->next=NULL;
-        this->cnt=1;
+        this->sz=1;
     }
 
 };
@@ -21,11 +21,9 @@ class LinkedList{
 public:
     Node * head;
     Node * tail;
-    int size;
     LinkedList(){
         this->head=NULL;
         this->tail=NULL;
-        this->size=0;
     }
 
     void add(string data){
@@ -43,7 +41,7 @@ public:
         Node * temp=tail;
         while(temp!=NULL){
             if(temp->data==data){
-                temp->cnt++;
+                temp->sz++;
                 return true;
             }else{
                 temp=temp->prev;
@@ -52,50 +50,30 @@ public:
         return false;
 
     }
-    void sort_cnt(){
-        Node * cur=head;
-        while(cur){
-            Node * temp=cur->next;
-            while(temp){
-                if((cur->cnt < temp->cnt) || (cur->cnt==temp->cnt && cur->data>temp->data)){
-                    int x=cur->cnt;
-                    cur->cnt=temp->cnt;
-                    temp->cnt=x;
-                    string val=cur->data;
+    void sortLL(){
+        Node * temp=tail;
+        Node * cur=tail;
+        while(cur!=NULL){
+            temp=cur->prev;
+            while(temp!=NULL){
+                if(cur->sz>temp->sz || (cur->sz==temp->sz && temp->data > cur->data)){
+                    string s=cur->data;
+                    int x=cur->sz;
                     cur->data=temp->data;
-                    temp->data=val;                    
+                    cur->sz=temp->sz;
+                    temp->data=s;
+                    temp->sz=x;
                 }
-                
-                temp=temp->next;
+                temp=temp->prev;
             }
-            cur=cur->next;
-
-        }
-
-    }
-
-    void sort_data(){
-        Node * cur=head;
-        while(cur){
-            Node * temp=cur->next;
-            while(temp){
-                if(cur->cnt==temp->cnt && cur->data>temp->data){
-                    string val=cur->data;
-                    cur->data=temp->data;
-                    temp->data=val;                    
-                }
-                
-                temp=temp->next;
-            }
-            cur=cur->next;
-
+            cur=cur->prev;
         }
     }
     void print(){
         freopen("output.txt","w",stdout);
         while(head!=NULL){
             
-            cout << head->data << " " << head->cnt << endl;
+            cout << head->data << " " << head->sz << endl;
             head=head->next;
         }
         fclose(stdout);
@@ -112,7 +90,7 @@ int main(){
     while(cin >> str){
         ll.add(str);
     }
-    ll.sort_cnt();
+    ll.sortLL();
     // ll.sort_data();
     ll.print();
 
