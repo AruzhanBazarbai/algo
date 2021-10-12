@@ -12,7 +12,7 @@
 // */
 #include <iostream>
 #include <bits/stdc++.h>
-
+// done
 using namespace std;
 
 class Maxheap{
@@ -55,7 +55,7 @@ class Maxheap{
         if(left(i)>a.size()-1)
             return;
         int j=left(i);
-        if(a[right(i)]<a[j] && right(i)<a.size()){
+        if(a[right(i)]>a[j] && right(i)<a.size()){
             j=right(i);
         }
         if(a[i]<a[j]){

@@ -1,9 +1,8 @@
-
 #include <iostream>
-#include <bits/stdc++.h>
-
+#include <vector>
+#include <algorithm>
 using namespace std;
-
+// 
 class Maxheap{
     public:
     vector<int > a;
@@ -24,24 +23,32 @@ class Maxheap{
         return a[0];
     }
 
-    int siftUp(int i){
+    void siftUp(int i){
         int ind=i;
         while(i>0 && a[parent(i)]<a[i]){
             swap(a[parent(i)],a[i]);
             i=parent(i);
+            ind=i;
         }
+        // cout << ind+1 << endl;
     }
 
     void insert(int k){
         a.push_back(k);
         int i=a.size()-1;
+        swap(a[0],a[i]);
         siftUp(i);
+        heapify(0);
+        
+        
     }
 
     void heapify(int i){
         if(left(i)>a.size()-1){
+            // cout << i+1 << " ";
             return;
         }
+        int ind=i;
         int j=left(i);
         if(a[right(i)]>a[j] && right(i)<a.size()){
             j=right(i);
@@ -49,16 +56,22 @@ class Maxheap{
         if(a[i]<a[j]){
             swap(a[i],a[j]);
             heapify(j);
-        }   
+        }
+        // else{
+        //     cout << ind+1 << " ";
+        //     return;
+        // }
+        
     }
-    int extractMax(){
+    void extractMax(){
         int root_value=getMax();
         swap(a[0],a[a.size()-1]);
         a.pop_back();
         if(a.size()>0){
             heapify(0);
         }
-        return root_value;
+        // else cout << 0 << " ";
+        // cout  << root_value << endl;
     }
 
     void print(){
@@ -72,13 +85,13 @@ class Maxheap{
 
 int main(){
     Maxheap * h=new Maxheap();
-    // priority_queue<int> pq;
-    int n,m,x;
+    int n,m,x,t;
     cin >> n;
     for(int i=0;i<n;i++){
         cin >> x;
         h->insert(x);
     }
+    
         
     h->print();
     return 0;

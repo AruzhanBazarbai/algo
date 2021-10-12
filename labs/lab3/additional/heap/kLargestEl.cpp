@@ -1,9 +1,13 @@
-
+// /*
+// 215. Kth Largest Element in an Array
+// Given an integer array nums and an integer k, return the kth largest element in the array.
+// Note that it is the kth largest element in the sorted order, not the kth distinct element.
+// */
 #include <iostream>
-#include <bits/stdc++.h>
-
+#include <vector>
+#include <algorithm>
 using namespace std;
-
+// done
 class Maxheap{
     public:
     vector<int > a;
@@ -24,7 +28,7 @@ class Maxheap{
         return a[0];
     }
 
-    int siftUp(int i){
+    void siftUp(int i){
         int ind=i;
         while(i>0 && a[parent(i)]<a[i]){
             swap(a[parent(i)],a[i]);
@@ -61,25 +65,19 @@ class Maxheap{
         return root_value;
     }
 
-    void print(){
-        for(int i=0;i<a.size();i++){
-            cout << a[i] << " ";
-        }
-        cout << endl;
-    }
 };
 
-
-int main(){
-    Maxheap * h=new Maxheap();
-    // priority_queue<int> pq;
-    int n,m,x;
-    cin >> n;
-    for(int i=0;i<n;i++){
-        cin >> x;
-        h->insert(x);
+class Solution {
+public:
+    int findKthLargest(vector<int>& nums, int k) {
+        Maxheap * h=new Maxheap();
+        for(int i=0;i<nums.size();i++){
+            h->insert(nums[i]);
+        }
+        int ind;
+        while(k--){
+            ind=h->extractMax();
+        }
+        return ind;
     }
-        
-    h->print();
-    return 0;
-}
+};

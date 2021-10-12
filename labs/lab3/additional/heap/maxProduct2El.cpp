@@ -1,9 +1,13 @@
-
+/*
+1464. Maximum Product of Two Elements in an Array
+Given the array of integers nums, you will choose two different indices i and j of that array. 
+Return the maximum value of (nums[i]-1)*(nums[j]-1).
+*/
 #include <iostream>
-#include <bits/stdc++.h>
-
+#include <vector>
+#include <algorithm>
 using namespace std;
-
+// done
 class Maxheap{
     public:
     vector<int > a;
@@ -24,7 +28,7 @@ class Maxheap{
         return a[0];
     }
 
-    int siftUp(int i){
+    void siftUp(int i){
         int ind=i;
         while(i>0 && a[parent(i)]<a[i]){
             swap(a[parent(i)],a[i]);
@@ -61,25 +65,18 @@ class Maxheap{
         return root_value;
     }
 
-    void print(){
-        for(int i=0;i<a.size();i++){
-            cout << a[i] << " ";
+};
+class Solution {
+public:
+    int maxProduct(vector<int>& nums) {
+        Maxheap * h=new Maxheap();
+        for(int i=0;i<nums.size();i++){
+            h->insert(nums[i]);
         }
-        cout << endl;
+        int ind=2,res=1;
+        while(ind--){
+            res*=(h->extractMax()-1);
+        }
+        return res;
     }
 };
-
-
-int main(){
-    Maxheap * h=new Maxheap();
-    // priority_queue<int> pq;
-    int n,m,x;
-    cin >> n;
-    for(int i=0;i<n;i++){
-        cin >> x;
-        h->insert(x);
-    }
-        
-    h->print();
-    return 0;
-}
