@@ -87,14 +87,7 @@ class BST{
         return node;
 
     }
-    int getHigh(Node * node){
-        int h1=0,h2=0;
-        while(node!=NULL){
-            node=node->left;
-            h1++;
-        }
-        return h1;
-    }
+
     
 };
 int main(){
