@@ -1,6 +1,6 @@
 #include <iostream>
 using namespace std;
-// 
+// /
 class Node{
 public:
     string data;
@@ -31,10 +31,21 @@ public:
         if(head==NULL){
             head=tail=node;
             
-        }else if(!find(data)){
-            node->prev=tail;
-            tail->next=node;
-            tail=node;
+        }else{
+            Node * temp=head;
+            while(temp!=NULL){
+                if(temp->data==data){
+                    temp->sz++;
+                    break;
+                }else{
+                    temp=temp->next;
+                }
+            }
+            if(temp==NULL){
+                node->prev=tail;
+                tail->next=node;
+                tail=node;
+            }
         }
     }
     bool find(string data){
@@ -69,6 +80,7 @@ public:
             cur=cur->prev;
         }
     }
+    
     void print(){
         freopen("output.txt","w",stdout);
         while(head!=NULL){

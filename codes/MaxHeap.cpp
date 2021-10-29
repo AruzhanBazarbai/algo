@@ -1,13 +1,14 @@
 
 #include <iostream>
-#include <bits/stdc++.h>
-
 using namespace std;
-
+int a[10000010];
+int res=1,ind=0;
 class Maxheap{
     public:
-    vector<int > a;
-
+    int sz;
+    Maxheap(){
+        this->sz=0;
+    }
     int parent(int i){
         return (i-1)/2;
     }
@@ -33,17 +34,18 @@ class Maxheap{
     }
 
     void insert(int k){
-        a.push_back(k);
-        int i=a.size()-1;
+        a[sz]=k;
+        sz++;
+        int i=sz-1;
         siftUp(i);
     }
 
     void heapify(int i){
-        if(left(i)>a.size()-1){
+        if(left(i)>sz-1){
             return;
         }
         int j=left(i);
-        if(a[right(i)]>a[j] && right(i)<a.size()){
+        if(a[right(i)]>a[j] && right(i)<sz){
             j=right(i);
         }
         if(a[i]<a[j]){
@@ -53,16 +55,16 @@ class Maxheap{
     }
     int extractMax(){
         int root_value=getMax();
-        swap(a[0],a[a.size()-1]);
-        a.pop_back();
-        if(a.size()>0){
+        swap(a[0],a[sz-1]);
+        sz--;
+        if(sz>0){
             heapify(0);
         }
         return root_value;
     }
 
     void print(){
-        for(int i=0;i<a.size();i++){
+        for(int i=0;i<sz;i++){
             cout << a[i] << " ";
         }
         cout << endl;

@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 using namespace std;
-// done
+// done/done
 int main(){
     int q,l1,l2,r1,r2,n,cnt=0;
     cin >> n >> q;

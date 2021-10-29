@@ -16,7 +16,7 @@
 // */
 #include <iostream>
 using namespace std;
-// done
+// done/done
 class Node{
     public:
     int data;

@@ -1,6 +1,6 @@
 
 basic problems:
-https://informatics.msk.ru/mod/statements/view.php?id=54818&chapterid=764#1
+https://informatics.msk.ru/mod/statements/view.php?id=54818&chapterid=764#1 +
  
  
 additional problems:

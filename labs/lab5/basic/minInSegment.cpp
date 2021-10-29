@@ -89,6 +89,20 @@ class MinHeap{
         }
         cout << endl;
     }
+    void dl(int x){
+        int ind;
+        for(int i=0;i<a.size();i++){
+            if(a[i]==x){
+                ind=i;
+                break;
+            }
+        }
+        swap(a[ind],a[a.size()-1]);
+        a.pop_back();
+        heapify(ind);
+        
+        
+    }
 };
 
 int main(){
@@ -100,13 +114,25 @@ int main(){
         cin >> a[i];
     }
     int temp=n-k+1;
-    while(temp--){
-        for(int i=ind;i<ind+k;i++){
-            h->insert(a[i]);
-        }
-        cout << h->extractMin() << endl;
-        h->a.clear();
-        ind++;
+    for(int i=0;i<k;i++){
+        h->insert(a[i]);
     }
+    while(temp--){
+        
+        // for(auto x:h->a){
+        //     cout << x << "----" << ind << endl; 
+        // }
+        int mini=h->extractMin();
+        cout << mini << endl;
+        if(a[ind]!=mini){
+            h->insert(mini);
+            h->dl(a[ind]);
+        }
+        ind++;
+        h->insert(a[ind+k-1]);
+        
+        
+        // h->a.clear();
+}
     return 0;
 }

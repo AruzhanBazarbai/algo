@@ -1,23 +1,25 @@
-// // Задача №1172. Просто сортировка
 // /*
-// 9. Просто сортировка
-// Требуется отсортировать по неубыванию с помощью изученного алгоритма
-// целочисленный массив размера N.
-// Формат входных данных. В первой строке вводится длина массива N. В следующей строке идут элементы массива – N целых чисел, каждое из которых
-// не превышает по модулю 109
-// . (1 ≤N≤ 105
-// ).
-// Формат выходных данных. N чисел – элементы исходного массива в порядке
-// неубывания. 
+// Problem C. Vowels and consonants
+// Albert does not agree with the basic English alphabet. He thinks, that in the alphabet, first, we need to
+// print vowel letters first and then consonants, and both vowels and consonants are ordered alphabetically.
+// So he asks us to sort string according to his own alphabet.
+// Input
+// The first line contains the number n (1 ≤ n ≤ 105
+// ), denoting the length of string. The second line contains
+// the string s.
+// Output
+// Print the answer.
 // */
 #include <iostream>
+#include <vector>
 using namespace std;
 // done
-int a[10000010];
-int res=1,ind=0;
+
 class MinHeap{
     public:
+    char a[100010];
     int sz;
+
     MinHeap(){
         this->sz=0;
     }
@@ -45,7 +47,7 @@ class MinHeap{
         }
     }
 
-    void insert(int k){
+    void insert(char k){
         a[sz]=k;
         sz++;
         int i=sz-1;
@@ -85,26 +87,29 @@ class MinHeap{
     }
     void print(){
         for(int i=0;i<sz;i++){
-            cout << a[i] << " ";
+            cout << a[i];
         }
-        cout << endl;
     }
 };
 
 int main(){
-    int n,x;
-    cin >> n;
-    MinHeap * heap=new MinHeap();
+    int n; string s;
+    MinHeap * hv=new MinHeap();
+    MinHeap * hc=new MinHeap();
+    cin >> n >> s;
     for(int i=0;i<n;i++){
-        cin >> x;
-        heap->insert(x);
+        if(s[i]=='a' || s[i]=='e' || s[i]=='u' || s[i]=='i' || s[i]=='o') hv->insert(s[i]);
+        else hc->insert(s[i]);
     }
-    // heap->decreaseKey(4,1);
-    // heap->print();
+    string res="";
+    while(hv->sz>0){
+        res+=hv->extractMin();
+    }
+    while(hc->sz>0){
+        res+=hc->extractMin();
+    }
+    cout << res;
 
-    for(int i=0;i<n;i++){ //heapsort O(n*logn)
-        cout << heap->extractMin() << " ";  
-    }
 
 
 

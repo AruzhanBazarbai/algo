@@ -1,17 +1,8 @@
-// /*
-// Задача №764. Сбалансированность
-// Дерево называется сбалансированным, если для любой его вершины высота левого и правого поддерева для этой вершины различаются не более чем на 1.
-
-// Входные данные
-// Вводится последовательность целых чисел, оканчивающаяся нулем. Сам ноль в последовательность не входит. Постройте дерево, 
-// соответствующее данной последовательности.
-
-// Выходные данные
-// Определите, является ли дерево сбалансированным, выведите слово YES или NO.
-// */
 #include <iostream>
 using namespace std;
-// done
+// 
+int a[1000010];
+int res=1,ind=0;
 class Node{
     public:
     int data;
@@ -42,6 +33,15 @@ class BST{
             node->right=insert(node->right,data);
         }
         return node;
+    }
+    void sort(Node * node){
+        if(node==NULL){
+            return;
+        }
+        sort(node->left);
+        a[ind]=node->data;
+        ind++;
+        sort(node->right); 
     }
     void inOrder(Node * node){
         if(node==NULL){
@@ -114,24 +114,60 @@ class BST{
     void calc(Node * root){
         calc(root,1);
     }
+    Node * ToBalancedBST(int l,int r){
+        if(l>r) return NULL;
+        int mid=l+(r-l)/2;
+        Node * root=new Node(a[mid]);
+        root->left=ToBalancedBST(l,mid-1);
+        root->right=ToBalancedBST(mid+1,r);
+        return root;
+    }
     bool check(){
         return ok;
+    }
+    void preOrder(Node * node){
+        if(node==NULL) return;
+        cout << node->data << " ";
+        preOrder(node->left);
+        preOrder(node->right); 
+    }
+    int rangeSumBST(Node* root, int low, int high){
+          
+
+        while(root!=NULL){
+            if(root->data<low){
+                return rangeSumBST(root->right,low,high);
+            }
+            if(root->data>high){
+                return rangeSumBST(root->left,low,high);
+            }
+            if(root->data>=low && root->data<=high){
+                return root->data+rangeSumBST(root->left,low,high)+rangeSumBST(root->right,low,high);
+            }
+
+        }
+        return 0;
     }
 
   
 };
 int main(){
     BST * bst=new BST();
-    int x;
-    while(cin >> x){
-        if(x==0) break;
+    int n,x;
+    cin >> n;
+    while(n--){
+        res*=2;
+    }
+    res--;
+    for(int i=0;i<res;i++){
+        cin >> x;
         bst->root=bst->insert(bst->root,x);
     }
-    bst->calc(bst->root);
-    cout << ((bst->check())? "YES" : "NO");
-
-    
+    bst->sort(bst->root);
+    bst->root=bst->ToBalancedBST(0,res-1);
+    bst->preOrder(bst->root);
+    cout << endl;
+    bst->inOrder(bst->root);
     return 0;
-
 
 }

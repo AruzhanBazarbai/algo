@@ -6,7 +6,7 @@ int main(){
     int n,x;
     cin >> x;
     cin >> n;
-    vector<int> a(n);
+    int a[n];
     for(int i=0;i<n;i++){
         cin >> a[i];
     }

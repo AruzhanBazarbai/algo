@@ -33,16 +33,21 @@ public:
     void add(int x,string data){
         Node * node=new Node(x,data);
         
-        if(head==NULL && x==1){
+        if(head==NULL){
             head=tail=node;
             size++;
                 
-        }else if(x==1 && size==1){
+        }else if(x==1  && size>=1){
+            Node * temp=head;
+            head->prev=node;
+            node->next=head;
             head=node;
-            head->next=tail;
-            tail->prev=head;
-            tail->ind++;
             size++;
+            while(temp!=NULL){
+                temp->ind++;
+                temp=temp->next;
+            }
+            
         }else if(x==size+1){
             tail->next=node;
             node->prev=tail;
@@ -53,6 +58,7 @@ public:
             while(temp->ind!=x){
                 temp=temp->next;
             }
+            Node * cur=temp;
             if(temp->prev==NULL){
                 head->prev=node;
                 node->next=head;
@@ -70,15 +76,15 @@ public:
                     // cout << "---1" << endl;
                     // k=false;
             }
-            while(temp!=NULL){
-                temp->ind++;
-                temp=temp->next;
+            while(cur!=NULL){
+                cur->ind++;
+                cur=cur->next;
             }
             
         }else error=true;
     }
     void dl(int x){
-        if(x>size) error=true;
+        if(x>size || size==0) error=true;
         else{
             Node * temp=head;
             while(temp->ind!=x){
@@ -107,13 +113,15 @@ public:
                 
             }else if(temp->prev==NULL && temp->next==NULL){
                 head=tail=NULL;
+                size=0;
             } 
-            size--;           
+            
+            if(size>0) size--;           
         }
 
     }
     void replace(int x,string data){
-        if(x>size ) error=true;
+        if(x>size || size==0) error=true;
         else{
             Node * temp=head;
             while(temp->ind!=x){
@@ -128,7 +136,7 @@ public:
         freopen("output.txt","w",stdout);
         if(q==1) cout << "ERROR";
         else if(q==2){
-            if(empty()){
+            if(size==0){
                 cout << "EMPTY";
             }else{
                 while(head!=NULL){
