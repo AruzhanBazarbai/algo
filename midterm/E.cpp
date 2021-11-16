@@ -1,8 +1,8 @@
-
 #include <iostream>
 using namespace std;
 // 
 int a[1000010];
+int cnt[1000010];
 int res=1,ind=0;
 class Node{
     public:
@@ -60,18 +60,23 @@ class BST{
         if(node==NULL) return 0;
         return min(minLength(node->left),minLength(node->right))+1;
     }
-    // считывает количество вершин и проверяет на балансированность
-    int calc(Node * node){
-        if(node==NULL) return 0;
-        int l,r;
-        if(node->left!=NULL) l=calc(node->left);
-        if(node->right!=NULL) r=calc(node->right);
-        a[min(l,r)+1]++;
-        return min(l,r);
+    void calc(Node* node) {
+    if (node == nullptr) return;
+    int cur = 2;
+    Node* l = node;
+    Node* r = node;
+    while (l->left != nullptr and r->right != nullptr) {
+        cnt[cur]++;
+        cur++;
+        l = l->left;
+        r = r->right;
     }
-    // void calc(Node * root){
-    //     calc(root);
-    // }
+    calc(node->left);
+    calc(node->right);
+    }
+    void calc() {
+        calc(root);
+    }
     Node * ToBalancedBST(int l,int r){
         if(l>r) return NULL;
         int mid=l+(r-l)/2;
@@ -94,16 +99,18 @@ class BST{
 };
 int main(){
     BST * bst=new BST();
-    int n,x;
+    int n;
     cin >> n;
+    
     for(int i=0;i<n;i++){
         int x;
         cin >> x;
         bst->root=bst->insert(bst->root,x);
     }
-    bst->calc(bst->root);
-    for(int i=1;i<=n;i++){
-        cout << a[i] << " ";
+    
+    bst->calc();
+    for(int i=2;i<=n;i++){
+        cout << cnt[i] << " ";
     }
     return 0;
 

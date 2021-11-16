@@ -1,67 +1,96 @@
 #include <iostream>
 using namespace std;
-int a[1000010];
-int n;
-// 
-void merge(int l,int r,int mid){
-    int n1=mid-l+1,n2=r-mid;
-    int R[n2],L[n1];
-    for(int i=0;i<n1;i++) L[i]=a[l+i];
+// done
+long long a[10000010];
+long long res=0,ind=0,n;
+class MinHeap{
+    public:
+    long long sz;
+    MinHeap(){
+        this->sz=0;
+    }
 
-    for(int i=0;i<n2;i++) R[i]=a[mid+i+1];
+    long long parent(long long i){
+        return (i-1)/2;
+    }
 
-    int uk1=0,uk2=0,k=l;
-    
-    while(uk1<n1 && uk2<n2){
-        if(L[uk1]>R[uk2]){
-            a[k]=L[uk1];
-            uk1++;
-        }else{
-            a[k]=R[uk2];
-            uk2++;
+    long long left(long long i){
+        return 2*i+1;
+    }
+
+    long long right(long long i){
+        return 2*i+2;
+    }
+
+    long long getMin(){
+        return a[0];
+    }
+
+    void siftUp(long long i){
+        while(i>0 && a[parent(i)]>a[i]){
+            swap(a[parent(i)],a[i]);
+            i=parent(i);
         }
-        k++;
     }
 
-    while(uk1<n1){
-        a[k]=L[uk1];
-        uk1++;
-        k++;
+    void insert(long long k){
+        a[sz]=k;
+        sz++;
+        long long i=sz-1;
+        siftUp(i);
     }
 
-    while(uk2<n2){
-        a[k]=R[uk2];
-        uk2++;
-        k++;
+    void heapify(long long i){
+        if(left(i)>sz-1)
+            return;
+        long long j=left(i);
+        if(a[right(i)]<a[j] && right(i)<sz){
+            j=right(i);
+        }
+        if(a[i]>a[j]){
+            swap(a[i],a[j]);
+            heapify(j);
+        }
+    }
+    long long extractMin(){
+        long long root_value=getMin();
+        swap(a[0],a[sz-1]);
+        sz--;
+        if(sz>0){
+            heapify(0);
+        }
+        return root_value;
     }
 
 
-
-
-}
-
-void merge_sort(int l,int r){
-    if(l<r){
-        int mid=(l+r)/2;
-        merge_sort(l,mid);
-        merge_sort(mid+1,r);
-        merge(l,r,mid);
+    void print(){
+        for(long long i=0;i<sz;i++){
+            cout << a[i] << " ";
+        }
+        cout << endl;
     }
-}
+    long long sum(long long s){
+        
+        while(sz>=2){
+            long long x1=extractMin();
+            long long x2=extractMin();
+            long long temp=x1+x2;
+            insert(temp);
+            s+=temp;
+        }
+        return s;
+    }
+};
 
 int main(){
+    MinHeap * h=new MinHeap();
     cin >> n;
-    for(int i=0;i<n;i++) cin >> a[i];
-    merge_sort(0,n-1);
-    long long res=0;
-    int ind=0;
-    while(n>1){
-        a[n-2]+=a[n-1];
-        res+=a[n-2];
-        n--;
-        merge_sort(0,n-1);
+    for(int i=0;i<n;i++){
+        long long x;
+        cin >> x;
+        h->insert(x);
     }
-    cout << res;
+    cout << h->sum(0);
 
     return 0;
 }
