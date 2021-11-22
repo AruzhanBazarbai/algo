@@ -7,4 +7,4 @@ https://leetcode.com/problems/design-hashmap/ hash function +
 https://leetcode.com/problems/design-hashset/ hash function +
 https://vjudge.net/problem/SPOJ-ADACLEAN +
 https://codeforces.com/problemset/problem/4/C +
-https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=4195
+https://onlinejudge.org/index.php?option=com_onlinejudge&Itemid=8&page=show_problem&problem=4195 +
