@@ -3,69 +3,53 @@
 using namespace std;
 // 
 int main(){
+    freopen("input.txt","r",stdin);
+    freopen("output.txt","w",stdout);
     int n;
     string s;
     long long p_pow[1000005];
-    vector<pair<long long,int> > hashes;
+    vector<long long> hashes;
     vector<pair<pair<long long,string>,int> > hash;
     p_pow[0]=1;
-    for(int i=1;i<1000005;i++) p_pow[i]=p_pow[i-1]*31;
+    for(int i=1;i<1000005;i++){
+        p_pow[i]=p_pow[i-1]*31;
+    }
     while(1){
         cin >> n;
         if(n==0) break;
         while(n--){
             cin >> s;
             long long h=0;
-            for(int i=0;i<s.size();i++){
-                h+=(s[i]-'a'+1)*p_pow[i];
+            int k=s.size();
+            for(int i=0;i<k;i++){
+                h+=(s[i]-'a'+1)*p_pow[k-i-1];
             }
             hash.push_back(make_pair(make_pair(h,s),0));
             
         }
         cin >> s;
+        int m=s.size();
         int maxi=0;
-        // long long h=0;
-        for(int i=0;i<s.size();i++){
-            // h+=(s[i]-'a'+1)*p_pow[i];
-            hashes.push_back(make_pair((s[i]-'a'+1)*p_pow[i],i));
-
-            if(i) hashes[i].first+=hashes[i-1].first;
-            // cout << "----1" << endl;
-            
+        hashes[0]=0;
+        for(int i=0;i<m;i++){
+            hashes[i]+=(s[i]-'a'+1)*p_pow[m-i-1];
+            // hashes[i-k+1]=(hashes[i-k]-(s[i-k]-'a'+1)*p[k-1])*pr+(s[i]-'a'+1);
             for(int j=0;j<hash.size();j++){
-                if(i-hash[j].first.second.size()+1>=0){
-                    // cout << "----2" << endl;
-                    // long long h1=h;
-                    long long h1=hashes[i].first;
-                    if(i-hash[j].first.second.size()+1>0){
-                        h1-=hashes[i-hash[j].first.second.size()].first;
-                        // cout << "----3" << endl;
-                        
+                int t=hash[i].first.second.size();
+                if(t>i+1) continue;
+                else{
+                    if(t<=i){
+                        long long h=(hashes[i-t]-(s[i-t]-'a'+1)*p_pow[t-1])*31+(s[i]-'a'+1);
                     }
-
-                    if(hash[j].first.first*p_pow[i-hash[j].first.second.size()+1]==h1){
-                        hash[j].second++;
-                        // cout << "----4" << endl;
-                        if(hash[j].second>maxi){
-                            // cout << "----5" << endl;
-                            maxi=hash[j].second;
-                        }
-                    }
-
-                }else{
-                    continue;
                 }
-            }
-            
-        }
-        cout << maxi << endl;
-        for(int i=0;i<hash.size();i++){
-            if(hash[i].second==maxi) cout << hash[i].first.second << endl;
-        }
-        hash.clear();
-        hashes.clear();
 
+            }
+
+        }
+        
     }
+    fclose(stdin);
+    fclose(stdout);
     return 0;
 
 }

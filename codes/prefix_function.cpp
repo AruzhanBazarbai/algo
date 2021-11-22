@@ -1,27 +1,25 @@
 // algorithm of prefix function
 #include <iostream>
-#include <vector>
 using namespace std;
-
-vector<int> prefix_function(string s){
+int a[1000005];
+void prefix_function(string s){ //O(n)
     int n=s.size();
-    vector<int> p(n);
     
-    for(int i=0;i<n;i++){
-        for(int k=0;k<=i;k++){
-            if(s.substr(0,k)==s.substr(i-k+1,k)){
-                p[i]=k;
-            }
+    for(int i=1;i<n;i++){
+        int j=a[i-1];
+        while(j>0 && s[j]!=s[i]){
+            j=a[j-1];
         }
+        if(s[i]==s[j]) j++;
+        a[i]=j;
     }
-    return p;
 }
 int main(){
     string s;
     cin >> s;
-    vector<int> v=prefix_function(s);
-    for(int i=0;i<v.size();i++){
-        cout << v[i] << " ";
+    prefix_function(s);
+    for(int i=0;i<s.size();i++){
+        cout << a[i] << " ";
     }
     return 0;
 }
