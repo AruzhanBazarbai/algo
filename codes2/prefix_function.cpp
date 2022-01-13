@@ -1,20 +1,18 @@
-// KMP
+// algorithm of prefix function
 #include <iostream>
 #include <vector>
 using namespace std;
 
-vector<int> prefix_function(string s){
+vector<int> prefix_function(string s){ // O(n^3)
     int n=s.size();
     vector<int> p(n);
-    p[0]=0;
     
-    for(int i=1;i<n;i++){
-        int j=p[i-1];
-        while(j>0 && s[j]!=s[i]){
-            j=p[j-1];
+    for(int i=0;i<n;i++){
+        for(int k=0;k<=i;k++){
+            if(s.substr(0,k)==s.substr(i-k+1,k)){
+                p[i]=k;
+            }
         }
-        if(s[i]==s[j]) j++;
-        p[i]=j;
     }
     return p;
 }

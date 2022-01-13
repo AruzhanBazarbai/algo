@@ -1,0 +1,10 @@
+sum: 5 a[i]: 1 mid: 5 r: 9 l: 1
+sum: 3 a[i]: 1 mid: 3 r: 5 l: 1
+sum: 2 a[i]: 1 mid: 2 r: 3 l: 1
+sum: 2 a[i]: 1 mid: 2 r: 3 l: 1
+sum: 1 a[i]: 1 mid: 1 r: 2 l: 1
+sum: 1 a[i]: 1 mid: 1 r: 2 l: 1
+sum: 1 a[i]: 1 mid: 1 r: 2 l: 1
+sum: 1 a[i]: 1 mid: 1 r: 2 l: 1
+sum: 1 a[i]: 1 mid: 1 r: 2 l: 1
+2

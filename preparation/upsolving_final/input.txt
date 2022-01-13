@@ -1,0 +1,20 @@
+10
++ jonathan
++ jojonathan
++ jojo
++ joji
+? joj
+? j
+- jojo
+? jo
+- joj
+? joj
+
+7
++ w
++ ww
++ www
++ wwww
+? www
+- ww
+? w

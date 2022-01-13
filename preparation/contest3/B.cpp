@@ -2,7 +2,7 @@
 #include <iostream>
 #include <vector>
 using namespace std;
-
+// done
 vector<int> prefix_function(string s){
     int n=s.size();
     vector<int> p(n);
@@ -19,11 +19,23 @@ vector<int> prefix_function(string s){
     return p;
 }
 int main(){
-    string s;
+    string s,t;
     cin >> s;
-    vector<int> v=prefix_function(s);
-    for(int i=0;i<v.size();i++){
-        cout << v[i] << " ";
+    int q,l,r;
+    cin >> q;
+    while(q--){
+        cin >> l >> r;
+        t=s.substr(l-1,r-l+1);
+        string k=t+"#"+s;
+        vector<int> v=prefix_function(k);
+        int cnt=0;
+        for(int i=0;i<v.size();i++){
+            if(v[i]==t.size()) cnt++;
+            // cout << v[i] << endl;
+        }
+        cout << cnt << endl;
     }
+    
+    
     return 0;
 }

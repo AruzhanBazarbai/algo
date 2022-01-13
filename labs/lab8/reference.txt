@@ -1,0 +1,13 @@
+https://onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=1246
+https://onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=60
+https://onlinejudge.org/index.php?option=onlinejudge&page=show_problem&problem=136
+https://informatics.msk.ru/mod/statements/view.php?id=256&chapterid=111540#1 +
+https://informatics.msk.ru/mod/statements/view.php?id=256&chapterid=165#1 +
+https://informatics.msk.ru/mod/statements/view.php?id=57033&chapterid=166#1 +
+https://informatics.msk.ru/course/view.php?id=6
+https://informatics.msk.ru/mod/book/view.php?id=435
+https://e-maxx.ru/algo/dijkstra
+https://e-maxx.ru/algo/aho_corasick
+http://neerc.ifmo.ru/wiki/index.php?title=Теория_графов#.D0.9E.D1.81.D0.BD.D0.BE.D0.B2.D0.BD.D1.8B.D0.B5_.D0.BE.D0.BF.D1.80.D0.B5.D0.B4.D0.B5.D0.BB.D0.B5.D0.BD.D0.B8.D1.8F_.D1.82.D0.B5.D0.BE.D1.80.D0.B8.D0.B8_.D0.B3.D1.80.D0.B0.D1.84.D0.BE.D0.B2
+https://informatics.msk.ru/mod/url/view.php?id=1035 Проверка графа на ацикличность и нахождение цикла на ориентированном графе
+https://informatics.msk.ru/mod/url/view.php?id=1036 топологическая сортировка

@@ -3,7 +3,7 @@
 #include <vector>
 using namespace std;
 
-vector<int> prefix_function(string s){
+vector<int> prefix_function(string s){ //O(n)
     int n=s.size();
     vector<int> p(n);
     p[0]=0;
